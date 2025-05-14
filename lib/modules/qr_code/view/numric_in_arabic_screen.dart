@@ -43,40 +43,43 @@ class _NumricInArabicScreenState extends State<NumricInArabicScreen> {
                     fit: BoxFit.fill,
                     image: AssetImage(
                         "assets/images/englishnumberphotoBack.jpg"))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: GridView.builder(
-                itemCount: controller.items.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 2 / 2.6),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () async {
-                      await player
-                          .play(AssetSource(controller.items[index].voicePath));
-                    },
-                    borderRadius: BorderRadius.circular(25),
-                    child: Container(
-                      margin: const EdgeInsets.all(10),
-                      width: 50,
-                      height: 50,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                  controller.items[index].imagePath)),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 3,
-                                color: Colors.grey.shade300)
-                          ]),
-                    ),
-                  );
-                },
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: GridView.builder(
+                  itemCount: controller.items.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 2 / 2.6),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () async {
+                        await player
+                            .play(AssetSource(controller.items[index].voicePath));
+                      },
+                      borderRadius: BorderRadius.circular(25),
+                      child: Container(
+                        margin: const EdgeInsets.all(10),
+                        width: 50,
+                        height: 50,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.white,
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                    controller.items[index].imagePath)),
+                            boxShadow: [
+                              BoxShadow(
+                                  spreadRadius: 2,
+                                  blurRadius: 3,
+                                  color: Colors.grey.shade300)
+                            ]),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           );

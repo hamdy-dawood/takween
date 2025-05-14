@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takween/modules/qr_code/controller/education_cubit.dart';
@@ -16,19 +15,27 @@ class EducationSCreen extends StatefulWidget {
 
 class _EducationSCreenState extends State<EducationSCreen> {
   var player = AudioPlayer();
+  var player2 = AudioPlayer();
+
+  @override
+  void initState() {
+    player2.play(AssetSource("second.mp3"));
+    super.initState();
+  }
+
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
+
     player.dispose();
+    player2.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EducationCubit(),
-      child: BlocBuilder<EducationCubit, EducationState>(
-          builder: (context, state) {
+      child: BlocBuilder<EducationCubit, EducationState>(builder: (context, state) {
         final controller = EducationCubit.get(context);
         return Scaffold(
           appBar: AppBar(
@@ -45,57 +52,56 @@ class _EducationSCreenState extends State<EducationSCreen> {
             alignment: Alignment.center,
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image:
-                        AssetImage("assets/images/educationBackground.jpg"))),
+            decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.fill, image: AssetImage("assets/images/educationBackground.jpg"))),
             child: Column(
               children: [
                 SizedBox(
                   height: 50,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 600,
-                  child: GridView.builder(
-                    padding: const EdgeInsets.all(10),
-                    itemCount: controller.items.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10),
-                    itemBuilder: (context, index) => InkWell(
-                      onTap: () async {
-                        await player.play(
-                          AssetSource(controller.items[index].voicePath ?? ""),
-                        );
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => controller.items[index].page,
-                        ));
-                      },
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(10),
+                      itemCount: controller.items.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () async {
+                          await player.play(
+                            AssetSource(controller.items[index].voicePath ?? ""),
+                          );
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => controller.items[index].page,
+                          ));
+                        },
+                        borderRadius: BorderRadius.circular(25),
+                        child: Container(
+                          margin: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 3,
-                                  color: Colors.grey.shade300)
-                            ]),
-                        child: Center(
-                          child: Text(
-                            controller.items[index].title,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontFamily: "cairo",
-                              fontWeight: FontWeight.w900,
-                              color: Colors.orange,
+                                spreadRadius: 2,
+                                blurRadius: 3,
+                                color: Colors.grey.shade300,
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              controller.items[index].title,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                fontFamily: "cairo",
+                                fontWeight: FontWeight.w900,
+                                color: Colors.orange,
+                              ),
                             ),
                           ),
                         ),
@@ -111,33 +117,8 @@ class _EducationSCreenState extends State<EducationSCreen> {
     );
   }
 }
-      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      /* body: Stack(
+/* body: Stack(
         children: [
           Column(
             children: <Widget>[
@@ -261,8 +242,7 @@ class _EducationSCreenState extends State<EducationSCreen> {
 }
  */
 
-
-/* 
+/*
 
  Barcode? result;
   QRViewController? controller;

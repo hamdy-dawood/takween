@@ -4,20 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/home_page_cubit.dart';
 
-class HomePageScreen extends StatefulWidget {
+class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
-
-  @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
-}
-
-class _HomePageScreenState extends State<HomePageScreen> {
-  var player = AudioPlayer();
-  @override
-  void dispose() {
-    player.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +41,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   controller.items.length,
                   (index) => InkWell(
                     borderRadius: BorderRadius.circular(25),
-                    onTap: () async {
-                      await player.play(
-                          AssetSource(controller.items[index].image ?? ""));
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
