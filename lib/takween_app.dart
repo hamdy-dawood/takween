@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'modules/home_page/view/home_page_screen.dart';
-import 'modules/splash/view/spalsh_screen.dart';
+import 'modules/splash/view/intro_screen.dart';
 
 class TakweenApp extends StatelessWidget {
   const TakweenApp({super.key});
@@ -16,7 +15,7 @@ class TakweenApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           scaffoldBackgroundColor: Colors.white),
-      home: const HomePageScreen(),
+      home: const IntroScreen(),
     );
   }
 }

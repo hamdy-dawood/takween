@@ -31,13 +31,7 @@ class _TakweenPartsScreenState extends State<TakweenPartsScreen> {
     return BlocProvider(
       create: (context) => TakweenPartsCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Takween",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: Colors.deepPurple),
-          ),
-          centerTitle: true,
-        ),
+        appBar: AppBar(),
         body: BlocBuilder<TakweenPartsCubit, TakweenPartsState>(
           builder: (context, state) {
             final controller = TakweenPartsCubit.get(context);

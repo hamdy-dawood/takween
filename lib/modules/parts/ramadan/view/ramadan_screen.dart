@@ -18,10 +18,8 @@ class RamadanScreen extends StatelessWidget {
           elevation: 0,
           scrolledUnderElevation: 0,
           title: const Text(
-            "Ramadan",
-            style: TextStyle(
-                color: Color.fromARGB(255, 99, 101, 135),
-                fontWeight: FontWeight.w700),
+            "شهر رمضان",
+            style: TextStyle(color: Color.fromARGB(255, 99, 101, 135), fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
         ),
@@ -31,55 +29,55 @@ class RamadanScreen extends StatelessWidget {
             return Column(
               children: [
                 Expanded(
-                    child: PageView.builder(
-                  controller: controller.pageController,
-                  onPageChanged: (value) => controller.changePage(value),
-itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) => GestureDetector(
+                  child: PageView.builder(
+                    controller: controller.pageController,
+                    onPageChanged: (value) => controller.changePage(value),
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) => GestureDetector(
                       onTap: () {
-                          controller.voice(voice: controller.audio[index]);
+                        controller.voice(voice: controller.audio[index]);
                       },
                       child: Image.asset(
-                        "assets/images/ramadan/${index+1}.jpg",
+                        "assets/images/ramadan/${index + 1}.jpg",
                         height: 500,
                         width: 400,
                       ),
                     ),
-               
-                )),
+                  ),
+                ),
                 Row(
                   children: [
                     InkWell(
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                          bottomRight: Radius.circular(6),
-                          topRight: Radius.circular(36)),
+                        topLeft: Radius.circular(6),
+                        bottomRight: Radius.circular(6),
+                        topRight: Radius.circular(36),
+                      ),
                       onTap: () {
                         controller.pageController.previousPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.bounceInOut);
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.bounceInOut,
+                        );
                       },
                       child: Container(
                         padding: const EdgeInsets.all(14),
                         margin: const EdgeInsets.only(top: 2, right: 2),
                         decoration: const BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 1,
-                                  color: Colors.black45)
-                            ],
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(2),
-                                bottomRight: Radius.circular(2),
-                                topRight: Radius.circular(36))),
+                          boxShadow: [BoxShadow(blurRadius: 3, spreadRadius: 1, color: Colors.black45)],
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(2),
+                            bottomRight: Radius.circular(2),
+                            topRight: Radius.circular(36),
+                          ),
+                        ),
                         child: const Padding(
-                            padding: EdgeInsets.only(top: 8.0, right: 10),
-                            child: Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              color: Colors.white,
-                            )),
+                          padding: EdgeInsets.only(top: 8.0, right: 10),
+                          child: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                     Expanded(
@@ -87,47 +85,45 @@ itemCount: 3,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: List.generate(
-                              3,
-                              (index) => Container(
-                                    margin: const EdgeInsets.only(left: 5),
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                        color: index == controller.selectedPage
-                                            ? Colors.black
-                                            : null,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            width: .8, color: Colors.black)),
-                                  )),
+                            3,
+                            (index) => Container(
+                              margin: const EdgeInsets.only(left: 5),
+                              width: 15,
+                              height: 15,
+                              decoration: BoxDecoration(
+                                color: index == controller.selectedPage ? Colors.black : null,
+                                shape: BoxShape.circle,
+                                border: Border.all(width: .8, color: Colors.black),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     InkWell(
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(36),
-                          bottomLeft: Radius.circular(6),
-                          topRight: Radius.circular(6)),
+                        topLeft: Radius.circular(36),
+                        bottomLeft: Radius.circular(6),
+                        topRight: Radius.circular(6),
+                      ),
                       onTap: () {
                         controller.pageController.nextPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.bounceInOut);
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.bounceInOut,
+                        );
                       },
                       child: Container(
                         padding: const EdgeInsets.all(14),
                         margin: const EdgeInsets.only(top: 2, left: 2),
                         decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 1,
-                                  color: Colors.black45)
-                            ],
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(36),
-                                bottomLeft: Radius.circular(2),
-                                topRight: Radius.circular(2))),
+                          color: Colors.grey,
+                          boxShadow: [BoxShadow(blurRadius: 3, spreadRadius: 1, color: Colors.black45)],
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(36),
+                            bottomLeft: Radius.circular(2),
+                            topRight: Radius.circular(2),
+                          ),
+                        ),
                         child: const Padding(
                             padding: EdgeInsets.only(top: 8.0, left: 10),
                             child: Icon(
